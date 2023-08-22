@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<h1 class="text-center text-5xl font-bold py-6">Django Todo App</h1>
+<div class="flex flex-col h-screen w-full m-auto">
+    <form method="post" action="/" class="mx-auto mt-24">
+        {% csrf_token %}
+        {{form.title}}
+        {{form.completed.as_hidden}}
+        <input type="submit" value="Add Task" class="btn">
+    </form>
+    <div class="mx-auto my-24">
+        {% for task in tasks %}
+        <div class="flex justify-between gap-72 p-6 align-baseline">
+            <div class="">
+                <h3 class="text-2xl font-bold">{{ task.title }}</h3>
+                <p>{{ task.created_at }}</p>
+            </div>
+            <div class="">
+                <a href="{% url 'delete' task.id%}"
+                    class="mr-12 bg-red-600 px-4 py-2 text-white rounded-md font-bold">Delete</a>
+                <a href="{% url 'update' task.id%}"
+                    class="bg-green-500 px-4 py-2 text-white rounded-md font-bold">Update</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}'
