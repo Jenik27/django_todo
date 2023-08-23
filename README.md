@@ -37,3 +37,4 @@ STATIC_ROOT = BASE_DIR / 'static/'
 ### Server
 
 pip install psycopg2-binary gunicorn
+all allowed hosts to settings py - using external url of the vm
